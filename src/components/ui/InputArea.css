@@ -1,0 +1,24 @@
+.inputArea {
+  height: 15vh;
+  background-color: rgb(223, 211, 255);
+  display: flex;
+}
+
+.inputArea > div {
+  flex: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.inputArea > div:hover {
+  background-color: #fff;
+}
+
+.inputArea > div > span {
+  display: flex;
+  flex-direction: column;
+  font-size: 4vh;
+}

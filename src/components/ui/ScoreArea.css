@@ -1,0 +1,17 @@
+.scoreArea {
+  display: flex;
+  height: 15vh;
+  background-color: rgb(255, 209, 209);
+}
+
+.scoreArea > div {
+  flex: 100;
+  text-align: center;
+  align-self: center;
+}
+
+.scoreArea > div span {
+  display: flex;
+  flex-direction: column;
+  font-size: 3vh;
+}

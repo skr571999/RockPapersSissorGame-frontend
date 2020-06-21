@@ -1,10 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "./Routes";
 
-function Components() {
+function Components(props) {
   return (
-    <div>
-      <h1>Play</h1>
-    </div>
+    <Router>
+      <Routes />
+    </Router>
   );
 }
 
