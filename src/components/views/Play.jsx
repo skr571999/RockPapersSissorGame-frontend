@@ -16,6 +16,8 @@ function Play(props) {
   const [appWinCount, setAppWinCount] = useState(0);
   const [showScoreCard, setshowScoreCard] = useState(false);
 
+  document.title = "Play - RockPaperScissor";
+
   const updateLocalStorage = () => {
     const oldUserWinCount = parseInt(localStorage.getItem("userWinCount")) || 0;
     const oldTotalPlayCount = parseInt(localStorage.getItem("totalPlay")) || 0;

@@ -6,6 +6,8 @@ function Start(props) {
     props.history.push("/play");
   };
 
+  document.title = "Start - RockPaperScissor";
+
   const [userWinCount, setuserWinCount] = useState(
     localStorage.getItem("userWinCount")
   );
