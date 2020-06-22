@@ -16,30 +16,15 @@ function Play(props) {
   const [appWinCount, setAppWinCount] = useState(0);
   const [showScoreCard, setshowScoreCard] = useState(false);
 
-  useEffect(() => {
-    if (result !== null) {
-      setTimeout(() => {
-        let messageText = "";
-        if (result === 0) {
-          messageText = "You Wins 🎈🎆🥳🎉🎊";
-          setUserWinCount(userWinCount + 1);
-        } else if (result === 1) {
-          messageText = "Game Ties";
-          setTiesCount(tiesCount + 1);
-        } else {
-          messageText = "App Wins";
-          setAppWinCount(appWinCount + 1);
-        }
-        setMessage(messageText);
-      }, 300);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result]);
-
-  useEffect(() => {
-    localStorage.setItem("userWinCount", userWinCount);
-    localStorage.setItem("totalPlay", userWinCount + tiesCount + appWinCount);
-  }, [userWinCount, tiesCount, appWinCount]);
+  const updateLocalStorage = () => {
+    const oldUserWinCount = parseInt(localStorage.getItem("userWinCount")) || 0;
+    const oldTotalPlayCount = parseInt(localStorage.getItem("totalPlay")) || 0;
+    localStorage.setItem("userWinCount", userWinCount + oldUserWinCount);
+    localStorage.setItem(
+      "totalPlay",
+      userWinCount + tiesCount + appWinCount + oldTotalPlayCount
+    );
+  };
 
   const handlePlayNext = (status) => {
     if (status) {
@@ -51,6 +36,7 @@ function Play(props) {
   };
 
   const goToStart = () => {
+    updateLocalStorage();
     props.history.push("/start");
   };
 
@@ -82,6 +68,26 @@ function Play(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appInput]);
+
+  useEffect(() => {
+    if (result !== null) {
+      setTimeout(() => {
+        let messageText = "";
+        if (result === 0) {
+          messageText = "You Wins 🎈🎆🥳🎉🎊";
+          setUserWinCount(userWinCount + 1);
+        } else if (result === 1) {
+          messageText = "Game Ties";
+          setTiesCount(tiesCount + 1);
+        } else {
+          messageText = "App Wins";
+          setAppWinCount(appWinCount + 1);
+        }
+        setMessage(messageText);
+      }, 300);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [result]);
 
   return (
     <div>

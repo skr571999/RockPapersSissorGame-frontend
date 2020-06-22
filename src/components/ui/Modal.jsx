@@ -13,7 +13,7 @@ function Modal(props) {
             onClick={() => handlePlayNext(true)}
             className="btn btn-outline-success"
           >
-            Yes..
+            Yes
           </button>
           <button
             onClick={() => handlePlayNext(false)}
