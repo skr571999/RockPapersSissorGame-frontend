@@ -3,6 +3,8 @@ import "./Play.css";
 import ScoreArea from "../ui/ScoreArea";
 import ResultArea from "../ui/ResultArea";
 import InputArea from "../ui/InputArea";
+import Modal from "../ui/Modal";
+import ExitModal from "../ui/ExitModal";
 
 function Play(props) {
   const [userInput, setUserInput] = useState("");
@@ -12,6 +14,7 @@ function Play(props) {
   const [userWinCount, setUserWinCount] = useState(0);
   const [tiesCount, setTiesCount] = useState(0);
   const [appWinCount, setAppWinCount] = useState(0);
+  const [showScoreCard, setshowScoreCard] = useState(false);
 
   useEffect(() => {
     if (result !== null) {
@@ -37,7 +40,9 @@ function Play(props) {
     if (status) {
       resetResult();
     } else {
-      goToStart();
+      setMessage("");
+      setshowScoreCard(true);
+      // goToStart();
     }
   };
 
@@ -81,20 +86,18 @@ function Play(props) {
         tiesCount={tiesCount}
         appWinCount={appWinCount}
       />
-      <ResultArea
-        userInput={userInput}
-        appInput={appInput}
-        message={message}
-        handlePlayNext={handlePlayNext}
-      />
+      <ResultArea userInput={userInput} appInput={appInput} />
       <InputArea userInput={userInput} setUserInput={setUserInput} />
+      {message && <Modal message={message} handlePlayNext={handlePlayNext} />}
+      {showScoreCard && (
+        <ExitModal
+          userWinCount={userWinCount}
+          totalCount={tiesCount + appWinCount + userWinCount}
+          goToStart={goToStart}
+        />
+      )}
     </div>
   );
 }
 
 export default Play;
-
-// if result
-// 0 - user wins
-// 1 - tie
-// 2 - app win

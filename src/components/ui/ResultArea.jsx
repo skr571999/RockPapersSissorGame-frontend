@@ -4,31 +4,9 @@ import Emoji from "./Emoji";
 import "./ResultArea.css";
 
 function ResultArea(props) {
-  const { userInput, appInput, message, handlePlayNext } = props;
+  const { userInput, appInput } = props;
   return (
     <div className="resultArea">
-      {message && (
-        <div className="resultMessage">
-          <div className="message">
-            <h2>{message}</h2>
-            <p>Do you want to Play next Game??</p>
-            <div className="yesNoBtns">
-              <button
-                onClick={() => handlePlayNext(true)}
-                className="btn btn-outline-success"
-              >
-                Yes
-              </button>
-              <button
-                onClick={() => handlePlayNext(false)}
-                className="btn btn-outline-danger"
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="userArea">
         <Emoji
           emoji={
