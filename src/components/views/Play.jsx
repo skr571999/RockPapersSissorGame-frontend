@@ -36,13 +36,17 @@ function Play(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result]);
 
+  useEffect(() => {
+    localStorage.setItem("userWinCount", userWinCount);
+    localStorage.setItem("totalPlay", userWinCount + tiesCount + appWinCount);
+  }, [userWinCount, tiesCount, appWinCount]);
+
   const handlePlayNext = (status) => {
     if (status) {
       resetResult();
     } else {
       setMessage("");
       setshowScoreCard(true);
-      // goToStart();
     }
   };
 
